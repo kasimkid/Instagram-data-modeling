@@ -9,6 +9,7 @@ Base = declarative_base()
 
 class User(Base):
     __tablename__ = 'user'
+    nickuser = Column(String(40), primary_key=True)
     userID = Column(Integer,ForeignKey('user.userID'))
     first_name = Column(String(30), nullable=False)
     last_name = Column(String(30), nullable=False)
@@ -17,8 +18,6 @@ class User(Base):
 
 class Media(Base):
     __tablename__ = 'media'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
     mediaID = Column(Integer, primary_key=True)
     url = Column(String(250))
     postID = relationship('Post')
@@ -35,9 +34,9 @@ class Post(Base):
     postId = Column(Integer, primary_key=True)
     userID = relationship('User')
 
-class Followers(Base):
-    __tablename_ = 'followers'
-    followersID = Column(Integer, primary_key=True)
+class Follower(Base):
+    __tablename__ = 'follower'
+    followerID = Column(Integer, primary_key=True)
     userID = relationship('User')
 
     def to_dict(self):
