@@ -9,11 +9,12 @@ Base = declarative_base()
 
 class User(Base):
     __tablename__ = 'user'
-    nickuser = Column(String(40), primary_key=True)
-    userID = Column(Integer,ForeignKey('user.userID'))
+    nickuser = Column(String(40), unique=True)
+    userID = Column(Integer, primary_key=True)
     first_name = Column(String(30), nullable=False)
     last_name = Column(String(30), nullable=False)
     email = Column(String(40), nullable=False, unique=True)
+    post = relationship('post')
 
 
 class Media(Base):
@@ -31,8 +32,14 @@ class Comment (Base):
 
 class Post(Base):
     __tablename__ = 'post'
+    mediaId = Column(Integer, ForeignKey('media.mediaID'))
+    commentID = Column (Integer, ForeignKey('comment. commentID'))              
     postId = Column(Integer, primary_key=True)
-    userID = relationship('User')
+    comment = relationship('commment')
+    media = relationship('media')
+
+
+    # userID = relationship('User')
 
 class Follower(Base):
     __tablename__ = 'follower'
