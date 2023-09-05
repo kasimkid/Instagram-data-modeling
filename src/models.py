@@ -33,7 +33,8 @@ class Comment (Base):
 class Post(Base):
     __tablename__ = 'post'
     mediaId = Column(Integer, ForeignKey('media.mediaID'))
-    commentID = Column (Integer, ForeignKey('comment. commentID'))              
+    commentID = Column (Integer, ForeignKey('comment. commentID'))   
+    followerID = Column (Integer, ForeignKey('follower. followerID'))              
     postId = Column(Integer, primary_key=True)
     comment = relationship('commment')
     media = relationship('media')
@@ -43,7 +44,6 @@ class Post(Base):
 
 class Follower(Base):
     __tablename__ = 'follower'
-
     followerID = Column(Integer, primary_key=True)
     userID = relationship('User')
     post = relationship('post')
