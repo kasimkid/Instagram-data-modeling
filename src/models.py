@@ -43,8 +43,10 @@ class Post(Base):
 
 class Follower(Base):
     __tablename__ = 'follower'
+
     followerID = Column(Integer, primary_key=True)
     userID = relationship('User')
+    post = relationship('post')
 
     def to_dict(self):
         return {}
